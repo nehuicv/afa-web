@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aran Football Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="aran-logo.png" alt="Aran Football Academy logo" class="blend-remove-white" />
+      <div class="mark">AFA</div>
+      <div>
+  <div style="font-weight:800" data-i18n="site.name">Aran Football Academy</div>
+  <div class="muted" style="font-size:12px" data-i18n="site.tagline">Forjando el futuro del fútbol en el corazón de los Pirineos</div>
+      </div>
+    </div>
+    <nav id="main-nav">
+      <a class="navlink" href="#home" data-target="home" data-i18n="nav.home">Inicio</a>
+      <a class="navlink" href="#la-academia" data-target="la-academia" data-i18n="nav.la_academia">La Academia</a>
+      <a class="navlink" href="#modelo-formativo" data-target="modelo-formativo" data-i18n="nav.modelo">Modelo Formativo</a>
+  <a class="navlink" href="#programas" data-target="programas" data-i18n="nav.programas">Programa</a>
+      <a class="navlink" href="#instalaciones" data-target="instalaciones" data-i18n="nav.instalaciones">Instalaciones</a>
+      <a class="navlink" href="#equipo" data-target="equipo" data-i18n="nav.equipo">Nuestro Equipo</a>
+      <a class="navlink" href="#admisiones" data-target="admisiones" data-i18n="nav.admisiones">Admisiones</a>
+      <a class="navlink" href="#contacto" data-target="contacto" data-i18n="nav.contacto">Contacto</a>
+      <a class="navlink" href="#blog" data-target="blog" data-i18n="nav.blog">Blog</a>
+      <a class="cta navlink" href="#admisiones" data-target="admisiones" data-i18n="nav.apply">Aplica ahora</a>
+
+      <label for="lang-select" style="margin-left:8px;font-weight:600;display:inline-block">🌐</label>
+      <div class="lang-dropdown" id="lang-dropdown" style="margin-left:6px">
+        <button class="lang-toggle" id="lang-toggle" aria-haspopup="true" aria-expanded="false">
+          <span class="flag">🇪🇸</span>
+          <span id="lang-label" style="font-weight:600">Español</span>
+        </button>
+        <ul class="lang-menu" role="menu" id="lang-menu">
+          <li role="menuitem" data-lang="es"><span class="flag">🇪🇸</span> Español</li>
+          <li role="menuitem" data-lang="ca"><span class="flag">🇦🇩</span> Català</li>
+          <li role="menuitem" data-lang="fr"><span class="flag">🇫🇷</span> Français</li>
+          <li role="menuitem" data-lang="en"><span class="flag">🇬🇧</span> English</li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <section id="home" class="page">
+      <div class="banner">
+        <div class="hero-text">
+          <h1 data-i18n="hero.title">Forjando el futuro del fútbol en el corazón de los Pirineos</h1>
+          <p data-i18n="hero.subtitle">Aran Football Academy — Bossòst, Vall d'Aran. Formación deportiva, académica y humana en un entorno natural único. Competición en la FFF y proyección internacional.</p>
+          <div class="pillars">
+            <div class="pillar"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6 6 .5-4.5 4 1 6L12 16l-5.5 3.5 1-6L3 8.5 9 8 12 2z" fill="var(--green-500)"/></svg><div><strong data-i18n="pillar.sport">Deportivo</strong><div class="muted" style="font-size:13px" data-i18n="pillar.sport_desc">Entrenamiento de alto rendimiento</div></div></div>
+            <div class="pillar"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" fill="var(--green-500)"/></svg><div><strong data-i18n="pillar.academic">Académico</strong><div class="muted" style="font-size:13px" data-i18n="pillar.academic_desc">ESO y Bachillerato con Institut d'Aran</div></div></div>
+            <div class="pillar"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="var(--green-500)"/></svg><div><strong data-i18n="pillar.human">Humano</strong><div class="muted" style="font-size:13px" data-i18n="pillar.human_desc">Valores y vida en la naturaleza</div></div></div>
+          </div>
+
+          <div class="buttons">
+            <a class="cta" href="#programas" data-target="programas" data-i18n="hero.discover">Descubre nuestro programa</a>
+            <a class="navlink" href="#admisiones" data-target="admisiones" data-i18n="hero.apply">Aplica ahora</a>
+          </div>
+
+          <div style="margin-top:14px" class="muted" data-i18n="hero.note">Testimonios y noticias destacadas más abajo — ¡mantente al día!</div>
+        </div>
+
+          <div class="hero-image" title="Instalaciones Aran Football Academy" data-i18n-attr='{"title":"hero.image.title"}'>
+          <div class="hero-slider" id="hero-slider">
+            <img src="image.png" alt="Residencia Aran Football Academy - fachada" loading="lazy" class="hero-slide" data-i18n-attr='{"alt":"hero.slider.img1.alt"}' />
+            <img src="foto.png" alt="Otra vista Aran Football Academy" loading="lazy" class="hero-slide" data-i18n-attr='{"alt":"hero.slider.img2.alt"}' />
+            <img src="foto1.png" alt="Vista adicional Aran Football Academy" loading="lazy" class="hero-slide" data-i18n-attr='{"alt":"hero.slider.img3.alt"}' />
+          </div>
+          <div class="hero-controls" aria-hidden="false">
+            <button class="hero-prev navlink" onclick="prevHero()" aria-label="Anterior imagen" data-i18n-attr='{"aria-label":"hero.controls.prev"}'>◀</button>
+            <button class="hero-next navlink" onclick="nextHero()" aria-label="Siguiente imagen" data-i18n-attr='{"aria-label":"hero.controls.next"}'>▶</button>
+          </div>
+          <div class="hero-indicators" id="hero-indicators" aria-hidden="false"></div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;margin-top:16px;align-items:flex-start;flex-wrap:wrap">
+        <section style="flex:1;min-width:260px">
+          <h2 data-i18n="news.title">Últimas noticias</h2>
+          <div class="carousel rounded" id="news-carousel">
+            <div class="carousel-track" id="news-track">
+              <article class="news-item card">
+                <h3 data-i18n="news.item1.title">Inicio del primer ciclo formativo</h3>
+                <p class="muted" data-i18n="news.item1.desc">La academia abre sus puertas con 54 jugadores en el primer año y una planificación de crecimiento a 5 años.</p>
+                <small class="muted" data-i18n="news.readmore">Leer más en el blog</small>
+              </article>
+              <article class="news-item card">
+                <h3 data-i18n="news.item2.title">Acuerdo con Institut d'Aran</h3>
+                <p class="muted" data-i18n="news.item2.desc">Convenio para cursar ESO y Bachillerato con transporte incluido.</p>
+                <small class="muted" data-i18n="news.readmore">Leer más en el blog</small>
+              </article>
+              <article class="news-item card">
+                <h3 data-i18n="news.item3.title">Residencia remodelada en Bossòst</h3>
+                <p class="muted" data-i18n="news.item3.desc">La antigua casa municipal se transforma en residencia con gimnasio y sala de vídeo-análisis.</p>
+                <small class="muted" data-i18n="news.readmore">Leer más en el blog</small>
+              </article>
+            </div>
+            <div class="carousel-controls">
+              <button onclick="prevNews()" aria-label="Anterior" data-i18n-attr='{"aria-label":"news.controls.prev"}'>◀</button>
+              <button onclick="nextNews()" aria-label="Siguiente" data-i18n-attr='{"aria-label":"news.controls.next"}'>▶</button>
+            </div>
+          </div>
+        </section>
+
+        <section style="flex:1;min-width:260px">
+          <h2 data-i18n="testimonials.title">Testimonios</h2>
+          <div class="card">
+            <p data-i18n="testimonials.family"><strong>Familia Martínez</strong> — "La formación humana y el entorno natural han sido clave para el desarrollo de nuestro hijo."</p>
+            <p class="muted" data-i18n="testimonials.note">¿Quieres dejar tu testimonio? Pronto añadiremos la opción de compartir en el perfil.</p>
+          </div>
+        </section>
+
+        <section style="flex-basis:220px;min-width:220px">
+          <h2 data-i18n="contact.quick">Contacto rápido</h2>
+          <div class="card">
+            <div class="muted" data-i18n="contact.quick.location">Bossòst, Vall d'Aran</div>
+            <div style="margin-top:8px" data-i18n="contact.quick.phone" data-i18n-mode="html"><strong>Tel:</strong> +34 600 000 000</div>
+            <div data-i18n="contact.quick.email" data-i18n-mode="html"><strong>Email:</strong> info@aranfootball.academy</div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="la-academia" class="page" hidden>
+  <h2 data-i18n="la_academia.title">La Academia</h2>
+  <p data-i18n="la_academia.intro" data-i18n-mode="html"><strong>Aran Football Academy</strong> nace para combinar excelencia deportiva y formación personal en la Vall d'Aran. Nuestro objetivo no es solo formar atletas de élite sino personas íntegras, preparadas para el éxito dentro y fuera del campo.</p>
+
+      <div class="academy-list" style="margin-top:12px">
+        <article class="academy-item card reveal">
+          <div class="academy-photo" style="background-image:url('image.png');" aria-hidden="true"></div>
+          <div class="academy-content">
+            <h3 data-i18n="academy.mission.title">Misión y Visión</h3>
+            <p class="muted" data-i18n="academy.mission.desc">Impulsar el talento juvenil, revitalizar Bossòst y ofrecer oportunidades deportivas y educativas con proyección europea.</p>
+          </div>
+        </article>
+
+        <article class="academy-item card reveal reverse">
+          <div class="academy-photo" style="background-image:url('mujer.png');" aria-hidden="true"></div>
+          <div class="academy-content">
+            <h3 data-i18n="academy.bossost.title">Por qué Bossòst</h3>
+            <p class="muted" data-i18n="academy.bossost.desc">Entorno seguro y natural, experiencia de competición en la liga francesa (FFF) y una vida comunitaria que potencia el crecimiento personal.</p>
+          </div>
+        </article>
+
+        <article class="academy-item card reveal">
+          <div class="academy-photo" style="background-image:url('escudocentro.png');" aria-hidden="true"></div>
+          <div class="academy-content">
+            <h3 data-i18n="academy.crest.title">Escudo y simbología</h3>
+            <p class="muted" data-i18n="academy.crest.desc">Nuestro escudo representa la naturaleza (verde), las montañas y el oso, símbolos de la identidad aranesa.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="modelo-formativo" class="page" hidden>
+  <h2 data-i18n="modelo.title">Modelo Formativo</h2>
+  <p data-i18n="modelo.intro">Un enfoque integral de tres pilares que garantizan desarrollo deportivo, académico y humano.</p>
+
+      <div class="pilares-grid" style="margin-top:12px">
+        <article class="pilar card">
+          <div class="pilar-media">
+            <img src="sala.png" alt="Entrenamiento deportivo" loading="lazy" width="160" height="100">
+          </div>
+          <div class="pilar-body">
+            <h3 data-i18n="modelo.pillar1.title">Pilar 1 — Formación Deportiva</h3>
+            <p class="muted" data-i18n="modelo.pillar1.desc">Perspectiva técnico-táctica, programas físicos individualizados y apoyo psicológico deportivo para maximizar el rendimiento.</p>
+            <ul class="small-list">
+              <li data-i18n="modelo.pillar1.item1">Entrenamiento de fundamentos técnicos</li>
+              <li data-i18n="modelo.pillar1.item2">Plan físico personalizado</li>
+              <li data-i18n="modelo.pillar1.item3">Acompañamiento psicológico</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="pilar card">
+          <div class="pilar-media">
+            <img src="psicologa.jpg" alt="Formación académica" loading="lazy" width="160" height="100">
+          </div>
+          <div class="pilar-body">
+            <h3 data-i18n="modelo.pillar2.title">Pilar 2 — Formación Académica</h3>
+            <p class="muted" data-i18n="modelo.pillar2.desc">Acuerdo con Institut d'Aran (ESO y Bachillerato), opción telemática y seguimiento pedagógico para asegurar la formación integral.</p>
+            <ul class="small-list">
+              <li data-i18n="modelo.pillar2.item1">Seguimiento académico</li>
+              <li data-i18n="modelo.pillar2.item2">Transporte a centros colaboradores</li>
+              <li data-i18n="modelo.pillar2.item3">Conciliación estudio-entrenamiento</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="pilar card">
+          <div class="pilar-media">
+            <img src="rocodromo.png" alt="Formación humana - rocódromo" loading="lazy" width="160" height="100">
+          </div>
+          <div class="pilar-body">
+            <h3 data-i18n="modelo.pillar3.title">Pilar 3 — Formación Humana</h3>
+            <p class="muted" data-i18n="modelo.pillar3.desc">Fomento de valores como respeto, humildad y disciplina. Actividades en la naturaleza y educación en hábitos saludables.</p>
+            <ul class="small-list">
+              <li data-i18n="modelo.pillar3.item1">Actividades en la naturaleza</li>
+              <li data-i18n="modelo.pillar3.item2">Educación en nutrición</li>
+              <li data-i18n="modelo.pillar3.item3">Programas de liderazgo</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="programas" class="page" hidden>
+  <h2 data-i18n="programas.title">Programa</h2>
+  <p data-i18n="programas.intro">Oferta inicial para jóvenes de 14 a 18 años con equipos masculinos y femeninos. Competición en FFF y planificación a 5 años.</p>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+        <!-- Full-width: Programa anual -->
+          <div class="card" style="flex-basis:100%" id="annual-program-card">
+          <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+            <div style="flex:1;min-width:280px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <div>
+                  <h3 data-i18n="programas.annual.title">Programa anual</h3>
+                  <div class="muted" style="font-size:13px" data-i18n="programas.annual.subtitle">10 meses · precio de lanzamiento</div>
+                </div>
+                <div style="text-align:right">
+                  <div class="price-badge" style="background:var(--green-700);color:white;padding:12px 16px;border-radius:12px;font-weight:900;font-size:20px" data-i18n="programas.annual.price">23.500 €</div>
+                  <div class="muted" style="font-size:12px;margin-top:6px" data-i18n="programas.annual.price_note">Tarifa de lanzamiento</div>
+                </div>
+              </div>
+
+              <div style="margin-top:12px">
+                <div style="font-weight:700" data-i18n="programas.includes.title">Qué incluye</div>
+                <ul style="margin-top:8px">
+                  <li data-i18n="programas.includes.item1">Residencia deportiva en Bossòst y acceso a instalaciones deportivas.</li>
+                  <li data-i18n="programas.includes.item2">Programa de entrenamiento de alto rendimiento con personal cualificado.</li>
+                  <li data-i18n="programas.includes.item3">Servicios médicos, fisioterapia, nutrición y psicología.</li>
+                  <li data-i18n="programas.includes.item4">Estudios en el Institut d'Aran con transporte según el plan.</li>
+                  <li data-i18n="programas.includes.item5">Equipaciones, material y licencia federativa (FFF).</li>
+                </ul>
+              </div>
+            </div>
+
+            <div style="flex-basis:320px;min-width:260px">
+                <div style="font-weight:700" data-i18n="programas.ages.title">Edades y equipos</div>
+              <ul style="margin-top:8px">
+                <li data-i18n="programas.ages.item1">Edades: 14–18 años (Cadete/Juvenil).</li>
+                <li data-i18n="programas.ages.item2">Equipos previstos: U16, U18 masculinos y U18 femenino (U16 incluidas).</li>
+                <li data-i18n="programas.ages.item3">54 jugadores el primer año — objetivo 144 en 5 años.</li>
+              </ul>
+
+              <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+                <button id="scholarship-toggle-top" class="navlink" aria-expanded="false" data-i18n="programas.scholarships">🎓 Becas</button>
+                <button id="program-apply-btn-top" class="cta" data-target="admisiones" data-i18n="hero.apply">Aplica ahora</button>
+              </div>
+
+              <div id="scholarship-details-top" class="card muted" hidden style="margin-top:8px;padding:8px;background:#fbfbfb">
+                <p style="margin:0" data-i18n="programas.scholarships.desc">Programa de becas para talentos con dificultades económicas; la concesión dependerá de las subvenciones disponibles.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan a 5 anys (separat) -->
+        <div class="card" style="flex-basis:100%" id="five-year-plan">
+          <h3 data-i18n="programas.plan.title">Plan a 5 años</h3>
+          <p class="muted" style="margin-top:6px" data-i18n="programas.plan.desc">Crecimiento progresivo de la plantilla y consolidación de las categorías U13–U18 masculinas y femeninas.</p>
+
+          <div id="price-timeline-5y" style="margin-top:12px">
+            <div class="timeline-wrapper" aria-hidden="false">
+              <div class="timeline-bar" id="timeline-bar-5y" role="slider" aria-label="Plan a 5 años" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" tabindex="0" data-i18n-attr='{"aria-label":"programas.plan.aria"}'>
+                <div id="timeline-progress-5y" class="timeline-progress" style="width:20%;" aria-hidden="true"></div>
+                <div id="timeline-handle-5y" class="timeline-handle" role="button" aria-label="Selector año" tabindex="0" data-i18n-attr='{"aria-label":"programas.plan.handle"}'></div>
+              </div>
+              <div class="timeline-markers" aria-hidden="true">
+                <span class="marker">1</span>
+                <span class="marker">2</span>
+                <span class="marker">3</span>
+                <span class="marker">4</span>
+                <span class="marker">5</span>
+              </div>
+              <div class="timeline-values" aria-hidden="true">
+                <div class="timeline-value" data-year="1"><div class="value-box">54</div><div class="value-label" data-i18n="programas.plan.year1">Año 1</div></div>
+                <div class="timeline-value" data-year="2"><div class="value-box">72</div><div class="value-label" data-i18n="programas.plan.year2">Año 2</div></div>
+                <div class="timeline-value" data-year="3"><div class="value-box">90</div><div class="value-label" data-i18n="programas.plan.year3">Año 3</div></div>
+                <div class="timeline-value" data-year="4"><div class="value-box">126</div><div class="value-label" data-i18n="programas.plan.year4">Año 4</div></div>
+                <div class="timeline-value" data-year="5"><div class="value-box">144</div><div class="value-label" data-i18n="programas.plan.year5">Año 5</div></div>
+              </div>
+            </div>
+
+            <div style="display:flex;justify-content:flex-start;font-size:13px;margin-top:8px">
+                <span id="timeline-label-5y" data-i18n="programas.plan.label" data-i18n-args='{"year":"1","players":"54"}'>Año 1 · ≈54 jugadores</span>
+            </div>
+
+            <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+              <div style="flex:1;min-width:200px">
+                <strong data-i18n="programas.plan.launch.title">Objetivo de lanzamiento</strong>
+                <div class="muted" style="font-size:13px;margin-top:6px" data-i18n="programas.plan.launch.desc">Captar 50–60 jugadores/jugadores iniciales para crear reputación y estabilidad operativa.</div>
+              </div>
+
+              <div style="flex:1;min-width:200px">
+                  <strong data-i18n="programas.plan.projections.title">Proyecciones</strong>
+                  <ul style="margin-top:6px">
+                  <li data-i18n="programas.plan.projections.item1">Aumento progresivo de jugadores y equipos.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- quick category selector -->
+        <div class="card" style="flex-basis:100%">
+          <h3 data-i18n="programas.categories.title">Elige tu categoría</h3>
+          <p class="muted" data-i18n="programas.categories.desc">Haz clic en una categoría para ir directamente al formulario de admisiones con la categoría preseleccionada.</p>
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+            <button class="select-category navlink" data-cat="U16" data-i18n="cat.U16">U16</button>
+            <button class="select-category navlink" data-cat="U18" data-i18n="cat.U18">U18</button>
+            <button class="select-category navlink" data-cat="Femenino-U18" data-i18n="cat.FU18">Femenino U18</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="instalaciones" class="page" hidden>
+      <h2 data-i18n="instalaciones.title">Instalaciones</h2>
+  <p class="muted" data-i18n="instalaciones.intro">Explora las dependencias de la residencia y las zonas deportivas; haz clic en cada planta para ver los detalles y en las imágenes para ampliarlas.</p>
+
+      <div class="instalaciones-grid" style="margin-top:12px">
+        <div class="card" style="flex:1;min-width:360px">
+          <div class="accordion" id="inst-accordion">
+            <div class="accordion-item">
+              <button class="accordion-button" aria-expanded="false" aria-controls="panel-baja" id="btn-baja">
+                <span class="badge">PB</span>
+                <div style="flex:1;text-align:left">
+                  <div style="font-weight:800" data-i18n="instalaciones.ground.title">Planta baja — Corazón de la academia</div>
+                  <div class="muted" style="font-size:13px" data-i18n="instalaciones.ground.subtitle">Recepción, administración, comedores y gimnasio</div>
+                </div>
+                <span class="chev" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </button>
+              <div class="accordion-panel" id="panel-baja" role="region" aria-labelledby="btn-baja" hidden aria-expanded="false">
+                <div class="panel-inner">
+                  <p data-i18n="instalaciones.ground.intro">La planta baja se convertirá en el corazón de la academia e incluirá:</p>
+                  <ul>
+                    <li data-i18n="instalaciones.ground.item1">Recepción y tres salas para administración.</li>
+                    <li data-i18n="instalaciones.ground.item2">Dos lavabos (femenino y masculino).</li>
+                    <li data-i18n="instalaciones.ground.item3">Dos comedores con capacidad para 40 jóvenes cada uno.</li>
+                    <li data-i18n="instalaciones.ground.item4">Una cocina con su propio almacén.</li>
+                    <li data-i18n="instalaciones.ground.item5">Áreas específicas para fisioterapeuta, médico y nutricionista.</li>
+                    <li data-i18n="instalaciones.ground.item6">Un gimnasio equipado para trabajo físico y recuperación.</li>
+                    <li data-i18n="instalaciones.ground.item7">Conexión entre plantas mediante escaleras y ascensor.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-button" aria-expanded="false" aria-controls="panel-23" id="btn-23">
+                <span class="badge">2-3</span>
+                <div style="flex:1;text-align:left">
+                  <div style="font-weight:800" data-i18n="instalaciones.second.title">Segunda y tercera planta — Zona residencial</div>
+                  <div class="muted" style="font-size:13px" data-i18n="instalaciones.second.subtitle">Habitaciones para 4 y 8 alumnos con áreas de estudio</div>
+                </div>
+                <span class="chev" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </button>
+              <div class="accordion-panel" id="panel-23" role="region" aria-labelledby="btn-23" hidden aria-expanded="false">
+                <div class="panel-inner">
+                  <p data-i18n="instalaciones.second.intro">Cada una de estas plantas está dedicada a la residencia:</p>
+                  <ul>
+                    <li data-i18n="instalaciones.second.item1">14 habitaciones: 4 literas, 2 escritorios, lavabo y ducha.</li>
+                    <li data-i18n="instalaciones.second.item2">2 habitaciones mayores por planta para 8 alumnos: 8 camas, escritorio doble, lavabo con 2 váteres y ducha.</li>
+                    <li data-i18n="instalaciones.second.item3">Pequeña zona de estar y un balcón por planta.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-button" aria-expanded="false" aria-controls="panel-cuarta" id="btn-cuarta">
+                <span class="badge">4</span>
+                <div style="flex:1;text-align:left">
+                  <div style="font-weight:800" data-i18n="instalaciones.fourth.title">Cuarta planta — Ático y espacios comunes</div>
+                  <div class="muted" style="font-size:13px" data-i18n="instalaciones.fourth.subtitle">Sala de vídeo, despacho de psicología y sala de estudio</div>
+                </div>
+                <span class="chev" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </button>
+              <div class="accordion-panel" id="panel-cuarta" role="region" aria-labelledby="btn-cuarta" hidden aria-expanded="false">
+                <div class="panel-inner">
+                  <p data-i18n="instalaciones.fourth.intro">Debido al techo inclinado (aprox. 30% menos de superficie) la cuarta planta albergará:</p>
+                  <ul>
+                    <li data-i18n="instalaciones.fourth.item1">Sala de vídeo para clases de táctica y análisis.</li>
+                    <li data-i18n="instalaciones.fourth.item2">Despacho de la psicóloga.</li>
+                    <li data-i18n="instalaciones.fourth.item3">Espacio de descanso con televisores y sofás.</li>
+                    <li data-i18n="instalaciones.fourth.item4">Sala de estudio con un pequeño balcón.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="flex:1;min-width:320px">
+          <h3 data-i18n="instalaciones.sports.title">Instalaciones deportivas</h3>
+          <p class="muted" data-i18n="instalaciones.sports.desc">Campo de césped natural con mejoras previstas, piscina, rocódromo y pista de pádel municipales para actividades complementarias.</p>
+        </div>
+
+        <div class="card" style="flex:1;min-width:320px">
+          <h3 data-i18n="instalaciones.gallery.title">Galería</h3>
+          <div class="gallery" id="inst-gallery">
+            <img src="gym.png" alt="Gimnasio" data-caption="Gimnasio de la residencia" loading="lazy" data-i18n-attr='{"alt":"instalaciones.gallery.img1.alt","data-caption":"instalaciones.gallery.img1.caption"}'>
+            <img src="image.png" alt="Residencia" data-caption="Fachada de la residencia" loading="lazy" data-i18n-attr='{"alt":"instalaciones.gallery.img2.alt","data-caption":"instalaciones.gallery.img2.caption"}'>
+            <img src="padel.jpeg" alt="Pista de pádel municipal" data-caption="Pista de pádel municipal" loading="lazy" data-i18n-attr='{"alt":"instalaciones.gallery.img3.alt","data-caption":"instalaciones.gallery.img3.caption"}'>
+            <img src="piscina.jpeg" alt="Piscina municipal" data-caption="Piscina municipal" loading="lazy" data-i18n-attr='{"alt":"instalaciones.gallery.img4.alt","data-caption":"instalaciones.gallery.img4.caption"}'>
+            <img src="campo.jpeg" alt="Campo natural" data-caption="Campo natural" loading="lazy" data-i18n-attr='{"alt":"instalaciones.gallery.img5.alt","data-caption":"instalaciones.gallery.img5.caption"}'>
+          </div>
+          <div class="muted" style="margin-top:8px;font-size:13px" data-i18n="instalaciones.gallery.help">Haz clic en las imágenes para ampliarlas. Usa ← → para navegar y Esc para cerrar.</div>
+        </div>
+      </div>
+
+      <!-- Modal for image viewer -->
+      <div id="img-modal" class="img-modal" aria-hidden="true" role="dialog" data-i18n-attr='{"aria-label":"instalaciones.modal.title"}'>
+        <button class="modal-close" aria-label="Cerrar" id="modal-close" data-i18n-attr='{"aria-label":"instalaciones.modal.close"}'>✕</button>
+        <button class="modal-prev" aria-label="Imagen anterior" id="modal-prev" data-i18n-attr='{"aria-label":"instalaciones.modal.prev"}'>◀</button>
+        <figure class="modal-figure">
+          <img src="" alt="" id="modal-img">
+          <figcaption id="modal-caption"></figcaption>
+        </figure>
+  <button class="modal-next" aria-label="Siguiente imagen" id="modal-next" data-i18n-attr='{"aria-label":"instalaciones.modal.next"}'>▶</button>
+      </div>
+    </section>
+
+    <section id="equipo" class="page" hidden>
+      <h2 data-i18n="equipo.title">Personal</h2>
+  <p data-i18n="equipo.intro">En Aran Football Academy combinamos la experiencia humana con herramientas tecnológicas avanzadas. Mediante un sistema de análisis basado en inteligencia artificial, nuestro personal está especialmente capacitado para identificar talento, diseñar planes individualizados y guiar a los jóvenes hacia el éxito deportivo desde la técnica, la preparación física y el acompañamiento psicológico.</p>
+
+      <div class="team-grid" style="margin-top:12px">
+        <div class="member card reveal" data-role="director">
+          <div class="avatar">JR</div>
+          <div class="member-body">
+            <strong data-i18n="equipo.director.title">Director — Jordi Ros</strong>
+            <div class="muted" data-i18n="equipo.director.desc">Visión estratégica y coordinación general.</div>
+            <div class="details" hidden>
+              <p class="muted" data-i18n="equipo.director.details">Jordi coordina la integración entre el trabajo técnico y las herramientas de análisis. Responsable del desarrollo del proyecto y las alianzas institucionales.</p>
+            </div>
+            <div style="margin-top:8px">
+              <button class="view-profile navlink" data-i18n="equipo.view_profile">Ver perfil</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="member card reveal" data-role="director-deportivo">
+          <div class="avatar">ML</div>
+          <div class="member-body">
+            <strong data-i18n="equipo.sportdirector.title">Director Deportivo — Marc L.</strong>
+            <div class="muted" data-i18n="equipo.sportdirector.desc">Planificación deportiva y coordinación técnica.</div>
+            <div class="details" hidden>
+              <p class="muted" data-i18n="equipo.sportdirector.details">Marc diseña programas técnicos y físicos personalizados apoyados por modelos de IA que optimizan las cargas de trabajo y las progresiones individuales.</p>
+            </div>
+            <div style="margin-top:8px">
+              <button class="view-profile navlink" data-i18n="equipo.view_profile">Ver perfil</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="member card reveal" data-role="coordinador-academico">
+          <div class="avatar">NC</div>
+          <div class="member-body">
+            <strong data-i18n="equipo.academic.title">Coordinador Académico — Núria C.</strong>
+            <div class="muted" data-i18n="equipo.academic.desc">Enlace con Institut d'Aran y seguimiento académico.</div>
+            <div class="details" hidden>
+              <p class="muted" data-i18n="equipo.academic.details">Núria supervisa la conciliación estudio-entrenamiento, con seguimientos pedagógicos adaptados por el equipo para asegurar el desempeño integral del alumno.</p>
+            </div>
+            <div style="margin-top:8px">
+              <button class="view-profile navlink" data-i18n="equipo.view_profile">Ver perfil</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <p style="margin-top:12px" class="muted" data-i18n="equipo.note">Nuestro cuerpo técnico, el área de salud y el personal de residencia trabajan con protocolos actualizados y experiencia en formación juvenil, reforzados por análisis de rendimiento.</p>
+
+      <hr style="margin:18px 0;border:none;border-top:1px solid rgba(0,0,0,0.06)" />
+
+      <h3 data-i18n="equipo.apply.title">¿Quieres formar parte del equipo?</h3>
+      <p class="muted" data-i18n="equipo.apply.desc">Si deseas que evaluemos tu CV para optar a un puesto en el personal, envíanos tu información a continuación. Revisamos los perfiles y contactamos a los candidatos que encajan con las necesidades del proyecto.</p>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+        <div class="card" style="flex:1;min-width:320px">
+          <form id="staff-form">
+            <input required name="nombre" placeholder="Nombre completo" data-i18n-placeholder="staff.nombre" />
+            <input required name="email" type="email" placeholder="Correo electrónico" data-i18n-placeholder="staff.email" />
+            <input name="rol" placeholder="Rol al que optas (p. ej. Entrenador, Fisioterapeuta)" data-i18n-placeholder="staff.rol" />
+            <label class="muted" style="font-size:13px" data-i18n="staff.cv_label">Adjunta tu CV (PDF, DOC, DOCX) — opcional</label>
+            <input type="file" name="cv" accept=".pdf,.doc,.docx" />
+            <textarea name="mensaje" placeholder="Mensaje / disponibilidad" rows="3" data-i18n-placeholder="staff.mensaje"></textarea>
+            <div style="display:flex;gap:8px">
+              <button type="submit" style="background:var(--green-700);color:white" data-i18n="staff.submit">Enviar CV</button>
+              <button type="button" onclick="document.getElementById('staff-form').reset()" data-i18n="staff.reset">Limpiar</button>
+            </div>
+          </form>
+          <div id="staff-result" class="muted" style="margin-top:8px"></div>
+        </div>
+
+        <div class="card" style="flex:1;min-width:260px">
+          <h4 data-i18n="staff.info.title">Qué hacemos con tu CV</h4>
+          <p class="muted" data-i18n="staff.info.desc">Los CVs se revisan por nuestro equipo humano y se contrastan con perfiles buscados usando criterios asistidos por IA: adecuación al rol, experiencia y disponibilidad. Si encajas, te contactamos para una entrevista.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="admisiones" class="page" hidden>
+      <h2 data-i18n="admisiones.title">Admisiones</h2>
+  <p data-i18n="admisiones.intro">Proceso de selección claro: solicitud online, evaluación, posible prueba de nivel y entrevista.</p>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+        <div class="card" style="flex:1;min-width:320px">
+          <h3 data-i18n="admisiones.fees.title">Tarifas y plazos</h3>
+          <p class="muted" data-i18n="admisiones.fees.desc">Precios y plazos en la tabla: matrícula, alojamiento y cuota anual. (Se mostrará tabla detallada en la versión final.)</p>
+        </div>
+
+        <div class="card" style="flex:1;min-width:320px">
+          <h3 data-i18n="admisiones.form.title">Formulario de solicitud</h3>
+          <form id="apply-form">
+            <input required name="nombre" placeholder="Nombre completo" data-i18n-placeholder="form.nombre" />
+            <input required name="edad" type="number" min="14" max="99" placeholder="Edad" data-i18n-placeholder="form.edad" />
+            <input required name="email" type="email" placeholder="Correo electrónico" data-i18n-placeholder="form.email" />
+            <select name="categoria" data-i18n-select="form.categoria">
+              <option value="U16" data-i18n="cat.U16">U16</option>
+              <option value="U18" data-i18n="cat.U18">U18</option>
+              <option value="Femenino-U18" data-i18n="cat.FU18">Femenino U18</option>
+            </select>
+            <textarea name="mensaje" placeholder="Mensaje / observaciones" rows="3" data-i18n-placeholder="form.message"></textarea>
+            <div style="display:flex;gap:8px">
+              <button type="submit" style="background:var(--green-700);color:white" data-i18n="form.submit_apply">Enviar solicitud</button>
+              <button type="button" onclick="saveDraft()" data-i18n="form.save_draft">Guardar borrador</button>
+            </div>
+          </form>
+          <div id="apply-result" class="muted" style="margin-top:8px"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="page" hidden>
+      <h2 data-i18n="contacto.title">Contacto</h2>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+        <div class="card" style="flex:1;min-width:320px">
+          <h3 data-i18n="contacto.data">Datos</h3>
+          <p class="muted" data-i18n="contacto.data.address">Residencia: Bossòst, Vall d'Aran</p>
+          <p class="muted" data-i18n="contacto.data.contact">Tel: +34 600 000 000 — Email: info@aranfootball.academy</p>
+          <p class="muted" data-i18n="contacto.data.social">Redes: Instagram · X · YouTube (enlaces próximos)</p>
+        </div>
+
+        <div class="card" style="flex:1;min-width:320px">
+          <h3 data-i18n="contacto.map">Mapa</h3>
+          <div style="position:relative;border-radius:10px;overflow:hidden">
+            <iframe
+              title="Zonas deportivas Bossòst"
+              data-i18n-attr='{"title":"contacto.map.iframe"}'
+              src="https://www.google.com/maps?q=zonas+deportivas+Boss%C3%B2st&z=15&output=embed"
+              style="width:100%;height:360px;border:0;display:block"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div style="position:absolute;left:12px;top:12px;background:rgba(255,255,255,0.9);padding:8px 10px;border-radius:10px;font-weight:700;color:#0b2a12;box-shadow:0 6px 16px rgba(3,41,18,0.06)" data-i18n="contacto.map.overlay">Zonas deportivas — Bossòst</div>
+            <a
+              href="https://www.google.com/maps/search/zonas+deportivas+Boss%C3%B2st"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="position:absolute;right:12px;bottom:12px;background:var(--green-700);color:white;padding:8px 12px;border-radius:10px;font-weight:700;box-shadow:0 6px 16px rgba(31,166,90,0.15);text-decoration:none" data-i18n="contacto.map.open">Abrir mapa</a>
+          </div>
+        </div>
+
+        <div class="card" style="flex-basis:100%">
+          <h3 data-i18n="contacto.form">Formulario de contacto</h3>
+          <form id="contact-form">
+            <input name="name" required placeholder="Nombre" data-i18n-placeholder="contact.name" />
+            <input name="email" required type="email" placeholder="Correo" data-i18n-placeholder="contact.email" />
+            <textarea name="message" rows="4" placeholder="Tu mensaje" data-i18n-placeholder="contact.message"></textarea>
+            <div style="margin-top:8px"><button type="submit" style="background:var(--green-500);color:white" data-i18n="form.submit_contact">Enviar</button></div>
+          </form>
+          <div id="contact-result" class="muted" style="margin-top:8px"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog" class="page" hidden>
+      <h2 data-i18n="blog.title">Blog / Noticias</h2>
+  <p data-i18n="blog.intro">Espacio para noticias, cronologías y el seguimiento del proyecto.</p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px">
+        <article class="card clickable" id="card-planificacion-deportiva">
+          <div id="card-planificacion-deportiva-inner" role="button" tabindex="0" style="outline:none;position:relative;padding-right:26px">
+            <h3 data-i18n="blog.card1.title">Planificación Deportiva</h3>
+            <p class="muted" data-i18n="blog.card1.desc">Detalles sobre la infografía del crecimiento y objetivos deportivos a 5 años. (Se abrirá en una pestaña nueva)</p>
+          </div>
+        </article>
+        <article class="card" style="position:relative;overflow:visible">
+          <h3 data-i18n="blog.card2.title">Calendario y eventos</h3>
+          <p class="muted" data-i18n="blog.card2.desc">Partidos, pruebas de selección y eventos formativos.</p>
+          <span class="soon-badge" aria-hidden="true" data-i18n="blog.soon">Coming soon</span>
+        </article>
+      </div>
+
+      <!-- New: Planos de la academia as a blog post -->
+  <article class="card" style="margin-top:14px;" id="post-planos">
+    <h3 data-i18n="blog.planos.title">Planos de la Academia</h3>
+  <p class="muted" data-i18n="post.planos.intro">Aquí puedes ver los planos de las distintas plantas de la residencia deportiva:</p>
+
+        <div class="planos-viewer" style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start">
+          <figure class="plan-main" style="flex:1;min-width:320px">
+            <img id="plan-main-img" src="Plantabaja.jpg" alt="Plano planta baja" data-i18n-attr='{"alt":"post.planos.main_caption"}' style="width:100%;height:420px;object-fit:contain;border-radius:10px;background:#fff;padding:10px;box-shadow:0 12px 40px rgba(3,41,18,0.06)" loading="lazy">
+            <figcaption class="muted" id="plan-main-caption" style="margin-top:8px" data-i18n="post.planos.main_caption">Planta baja — vista general</figcaption>
+          </figure>
+
+          <div class="plan-thumbs" style="width:320px;max-width:40%;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="thumb navlink" data-src="Plantabaja.jpg" data-caption="Planta baja — recepción, comedores y gimnasio" aria-label="Ver planta baja" data-i18n-attr='{"aria-label":"post.planos.thumb.baja.aria","data-caption":"post.planos.thumb.baja.caption"}' style="border:0;background:transparent;padding:0"><img src="Plantabaja.jpg" alt="Planta baja thumbnail" style="width:140px;height:90px;object-fit:cover;border-radius:8px;box-shadow:0 6px 18px rgba(3,41,18,0.06)"></button>
+              <button class="thumb navlink" data-src="Planta2.jpg" data-caption="Planta 2 — habitaciones" aria-label="Ver segunda planta" data-i18n-attr='{"aria-label":"post.planos.thumb.2.aria","data-caption":"post.planos.thumb.2.caption"}' style="border:0;background:transparent;padding:0"><img src="Planta2.jpg" alt="Planta 2 thumbnail" style="width:140px;height:90px;object-fit:cover;border-radius:8px;box-shadow:0 6px 18px rgba(3,41,18,0.06)"></button>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="thumb navlink" data-src="Planta3.jpg" data-caption="Planta 3 — habitaciones" aria-label="Ver tercera planta" data-i18n-attr='{"aria-label":"post.planos.thumb.3.aria","data-caption":"post.planos.thumb.3.caption"}' style="border:0;background:transparent;padding:0"><img src="Planta3.jpg" alt="Planta 3 thumbnail" style="width:140px;height:90px;object-fit:cover;border-radius:8px;box-shadow:0 6px 18px rgba(3,41,18,0.06)"></button>
+              <button class="thumb navlink" data-src="plantabajocubierta.jpg" data-caption="Planta baja cubierta — zona de estudio y zonas comunes" aria-label="Ver planta baja cubierta" data-i18n-attr='{"aria-label":"post.planos.thumb.cubierta.aria","data-caption":"post.planos.thumb.cubierta.caption"}' style="border:0;background:transparent;padding:0"><img src="plantabajocubierta.jpg" alt="Planta baja cubierta thumbnail" style="width:140px;height:90px;object-fit:cover;border-radius:8px;box-shadow:0 6px 18px rgba(3,41,18,0.06)"></button>
+            </div>
+
+            <div style="display:flex;gap:8px;margin-top:8px;">
+              <a href="Plantabaja.jpg" target="_blank" class="navlink" style="display:inline-flex;align-items:center;padding:8px 10px;border-radius:10px" data-i18n="post.planos.open_in_new_tab">Abrir en nueva pestaña</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <span data-i18n="footer.copyright">© Aran Football Academy — Bossòst · Todos los derechos reservados</span>
+    </footer>
+
+  </main>
+
+  <script src="translations.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
