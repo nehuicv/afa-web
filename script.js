@@ -595,6 +595,31 @@ const langMeta = {
   en:{label:'English', flag:'🇬🇧'}
 };
 
+// Build language list dynamically from available translations so all languages show
+function getAvailableLangs(){
+  const all = getAllTranslations();
+  return Object.keys(all || {});
+}
+
+function buildLangMenu(){
+  if(!langMenu) return;
+  const available = getAvailableLangs();
+  if(!available.length) return;
+  const preferredOrder = ['es','ca','fr','en'];
+  const ordered = [...preferredOrder.filter(k=>available.includes(k)), ...available.filter(k=>!preferredOrder.includes(k))];
+  // Render
+  langMenu.innerHTML = '';
+  ordered.forEach(code=>{
+    const li = document.createElement('li');
+    li.setAttribute('role','menuitem');
+    li.dataset.lang = code;
+    const label = (langMeta[code] && langMeta[code].label) ? langMeta[code].label : code.toUpperCase();
+    li.setAttribute('aria-label', label);
+    li.textContent = label;
+    langMenu.appendChild(li);
+  });
+}
+
 function updateLangUI(lang){
   const meta = langMeta[lang] || langMeta['es'];
   if(langLabel) langLabel.textContent = meta.label;
@@ -612,6 +637,8 @@ function updateLangUI(lang){
 }
 
 // UI state will be initialized by applyTranslations called earlier
+// Build the lang menu now so applyTranslations can mark the active item
+buildLangMenu();
 
 // toggle menu
 if(langToggle && langMenu){

@@ -347,6 +347,8 @@ footer{margin-top:20px;padding:18px;border-radius:12px;background:linear-gradien
 .lang-menu li{padding:8px 10px;border-radius:8px;cursor:pointer;display:flex;gap:8px;align-items:center}
 .lang-menu li:hover{background:linear-gradient(90deg,#f7fff7,#fff)}
 .lang-menu li.active{background:var(--green-500);color:white}
+/* If many languages exist, allow scrolling so they all show */
+.lang-menu{max-height:50vh;overflow:auto}
 
 /* Visually hide but keep accessible (screen-reader only) */
 .sr-only{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0,0,0,0) !important;white-space:nowrap !important;border:0 !important}
@@ -366,9 +368,6 @@ footer{margin-top:20px;padding:18px;border-radius:12px;background:linear-gradien
   .menu-toggle{display:inline-flex}
   /* Dropdown del menú: ocupa ancho completo bajo el header */
   #main-nav{position:absolute;left:0;right:0;top:100%;
-    background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,255,247,0.96));
-    border:1px solid rgba(255,255,255,0.6);
-    box-shadow:0 16px 40px rgba(3,41,18,0.12);
     border-radius:0 0 14px 14px;
     margin-left:0;
     flex-direction:column;align-items:stretch;gap:6px;
@@ -376,6 +375,18 @@ footer{margin-top:20px;padding:18px;border-radius:12px;background:linear-gradien
     max-height:0;overflow:hidden;transition:max-height 260ms ease;z-index:100;
   }
   #main-nav.open{max-height:80vh}
+  /* Only show background/border when menu is open to avoid a thin green line when closed */
+  #main-nav.open{
+    background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,255,247,0.96));
+    border:1px solid rgba(255,255,255,0.6);
+    box-shadow:0 16px 40px rgba(3,41,18,0.12);
+  }
+  #main-nav:not(.open){
+    background:transparent;
+    border:0;
+    box-shadow:none;
+    padding:0;
+  }
   #main-nav .navlink, #main-nav .cta{display:block;width:100%;padding:10px 12px;font-size:15px}
   #main-nav .cta{text-align:center}
   /* fallback horizontal scroll (si se fuerza a inline) */
