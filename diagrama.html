@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagrama Causal: Impacte Socioeconòmic de la implementació de l'Aran Football Academy a Bossòst</title>
+  <!-- Fonts modernes per a una tipografia més visual -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5ff;
+    }
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    h1 {
+      text-align: center;
+      color: #222;
+      font-family: 'Bebas Neue', Impact, 'Arial Black', 'Segoe UI Black', sans-serif;
+      font-size: 56px;
+      line-height: 1.1;
+      letter-spacing: 0.5px;
+      margin: 10px 0 20px;
+    }
+    .controls {
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 6px;
+    }
+    .controls label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .controls input[type="range"] {
+      width: 100%;
+      max-width: 300px; /* s'ajusta a pantalles petites sense desbordar */
+      vertical-align: middle;
+    }
+
+    /* Slider verd per a "Simulació en el temps" */
+    #sizeSlider {
+      appearance: none;
+      -webkit-appearance: none;
+      background: transparent; /* el fons el posa la pista */
+      outline: none;
+      accent-color: #22C55E; /* suport modern quan existeix */
+    }
+    /* WebKit/Chromium (Chrome, Edge nou, Safari) */
+    #sizeSlider::-webkit-slider-runnable-track {
+      height: 8px;
+      background: #A7F3D0; /* verd suau per a la pista */
+      border-radius: 9999px;
+    }
+    #sizeSlider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      margin-top: -6px; /* centra el thumb sobre la pista */
+      background: #22C55E; /* verd principal */
+      border: 2px solid #059669; /* vora verd fosc */
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+      cursor: pointer;
+    }
+    #sizeSlider:active::-webkit-slider-thumb { transform: scale(1.05); }
+
+    /* Firefox */
+    #sizeSlider::-moz-range-track {
+      height: 8px;
+      background: #A7F3D0;
+      border-radius: 9999px;
+    }
+    #sizeSlider::-moz-range-progress {
+      height: 8px;
+      background: #34D399; /* part abans del thumb una mica més intensa */
+      border-radius: 9999px;
+    }
+    #sizeSlider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: #22C55E;
+      border: 2px solid #059669;
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+      cursor: pointer;
+    }
+
+    /* IE/Edge legacy */
+    #sizeSlider::-ms-track {
+      height: 8px;
+      background: transparent;
+      border-color: transparent;
+      color: transparent;
+    }
+    #sizeSlider::-ms-fill-lower {
+      background: #34D399;
+      border-radius: 9999px;
+    }
+    #sizeSlider::-ms-fill-upper {
+      background: #A7F3D0;
+      border-radius: 9999px;
+    }
+    #sizeSlider::-ms-thumb {
+      width: 20px;
+      height: 20px;
+      background: #22C55E;
+      border: 2px solid #059669;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    #canvas {
+      width: 100%;
+      /* Alçada flexible per a mòbil amb límits raonables */
+      height: clamp(480px, 72vh, 1100px);
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #fafafa;
+      cursor: grab;
+      /* Permet pan/zoom amb dits a mòbil sense conflictes amb scroll */
+      touch-action: none;
+    }
+    #canvas:active {
+      cursor: grabbing;
+    }
+    .loops-info {
+      background: #ECFDF5; /* verd molt suau per al fons de la llista de bucles */
+      padding: 15px;
+      border-radius: 4px;
+      margin-top: 20px;
+      border: 1px solid #A7F3D0; /* vora verd clar a joc */
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .loop {
+      margin: 10px 0;
+      padding: 10px;
+      background: white;
+      border-radius: 4px;
+      border-left: 4px solid #A7F3D0; /* color base neutre verdós (els tipus ho sobreescriuran) */
+      font-size: 0.9em;
+    }
+    .loop.positive { border-left-color: #4CAF50; }
+    .loop.negative { border-left-color: #f44336; }
+
+    .node circle {
+      fill: #90EE90; /* verd clar especificat per a les variables */
+      stroke: #059669; /* contorn verd fosc per contrast */
+      stroke-width: 2px;
+      transition: r 0.3s ease, fill 0.2s ease, stroke 0.2s ease;
+    }
+    /* Estil especial per al node acad */
+   .node.fixed-size circle {
+     fill: #FFF9C4; /* to d'amarillo clarito per a Implementació Acadèmia */
+     stroke: #D97706; /* contorn groc-taronja més fosc per definir */
+   }
+  .node:hover circle {
+    fill: #98FB98; /* hover lleugerament més viu per a la resta de variables */
+  }
+   .node.fixed-size:hover circle {
+    fill: #FDE68A; /* hover una mica més intens per al node d'acadèmia */
+  }
+    .node text {
+      font-size: 12px;
+      fill: #333;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      pointer-events: none;
+      user-select: none;
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 500;
+    }
+    .link {
+      stroke: #065F46; /* fletxes en verd més fosc (emerald-800) */
+      stroke-width: 2px;
+      fill: none;
+    }
+    .link-label-group text {
+      font-size: 16px;
+      font-weight: 700;
+      fill: #333;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .link-label-group rect {
+      fill: white;
+      fill-opacity: 0.8;
+    }
+
+    /* ——— Ajustos responsius suaus ——— */
+    @media (max-width: 1024px) {
+      h1 { font-size: 44px; }
+      #canvas { height: clamp(520px, 68vh, 950px); }
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 12px; }
+      .container { padding: 12px; }
+      h1 {
+        font-size: 32px;
+        line-height: 1.15;
+        letter-spacing: 0.2px;
+        margin: 8px 0 16px;
+      }
+      .controls { font-size: 14px; }
+      .controls input[type="range"] { max-width: 100%; }
+      .node text { font-size: 10px; }
+      .link-label-group text { font-size: 12px; }
+      .loops-info { max-height: 45vh; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 26px; }
+      .controls { padding: 8px; }
+      .controls label { display: block; margin-bottom: 6px; }
+      #canvas { height: clamp(380px, 62vh, 720px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <h1>Diagrama Causal: Impacte Socioeconòmic de la implementació de l'Aran Football Academy a Bossòst</h1>
+
+    <div class="controls">
+  <label for="sizeSlider">Simulació en el temps:</label>
+      <input type="range" id="sizeSlider" min="0" max="100" value="0">
+    </div>
+
+    <svg id="canvas"></svg>
+
+    <div id="loopsInfo" class="loops-info">
+      <h3>🔁 Bucles de Retroalimentació (8 Bucles):</h3> <div id="loopsList"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script>
+    // === FUNCIONS UTILITÀRIES ===
+    function calculatePolarity(link) {
+      return link.effect === 'increase' ? '+' : '-';
+    }
+
+    // --- Funció per MOSTRAR els bucles ---
+    function displayLoops(loops, data) {
+      const loopsInfo = document.getElementById('loopsInfo');
+      const loopsList = document.getElementById('loopsList');
+      if (!loops || loops.length === 0) {
+        // console.warn("No s'han trobat bucles o la llista és buida."); // Comentat
+        loopsInfo.style.display = 'none';
+        return;
+      }
+      loopsInfo.style.display = 'block';
+      loopsList.innerHTML = '';
+
+      loops.sort((a, b) => {
+          if (a.type === b.type) {
+            return a.label.localeCompare(b.label, undefined, {numeric: true});
+          }
+          return a.type === 'negative' ? -1 : 1;
+      });
+
+      loops.forEach((loop, i) => {
+        const div = document.createElement('div');
+        div.className = `loop ${loop.type}`;
+        const pathLabels = loop.path.map(id => data.nodes.find(n => n.id === id)?.label.replace(/\n/g, ' ') || id);
+        const polarityStr = loop.polarities.join(' ');
+        const typeStr = loop.type === 'positive' ? 'Reforç (R)' : 'Balanç (B)';
+        const emoji = loop.type ==="positive" ? '🔄' : '⚖️';
+        const label = loop.label || `Bucle ${i + 1}`;
+
+        div.innerHTML = `<strong>${emoji} ${label}: ${typeStr}</strong><br>
+          ${pathLabels.join(' → ')} → ${pathLabels[0]}<br>
+          <small>Polaritats: ${polarityStr}</small>`;
+        loopsList.appendChild(div);
+      });
+    }
+
+    // === INICIALITZACIÓ DEL DIAGRAMA ===
+    function initializeDiagram(data) {
+      const width = 1600;
+      const height = 1100;
+
+      const nodes = data.nodes.map(d => ({...d}));
+      const links = data.links.map(l => ({
+        source: l.from,
+        target: l.to,
+        polarity: calculatePolarity(l)
+      }));
+
+      const baseRadius = 40;
+      const maxAdditionalRadius = 60;
+
+      const nodeById = new Map(nodes.map(node => [node.id, node]));
+
+      nodes.forEach(node => {
+        node.centrality = 0;
+        node.radius = baseRadius;
+      });
+
+      links.forEach(link => {
+        link.source = nodeById.get(link.source);
+        link.target = nodeById.get(link.target);
+
+        if (!link.source) console.error(`Node 'from' no trobat: ${link.source}`);
+        if (!link.target) console.error(`Node 'to' no trobat: ${link.target}`);
+
+        if (link.source) link.source.centrality += 2;
+        if (link.target) link.target.centrality += 1;
+      });
+
+      // Calculem maxCentrality EXCLOENT el node 'acad' per escalar la resta correctament
+      const maxCentrality = d3.max(nodes.filter(n => n.id !== 'acad'), d => d.centrality);
+      const bonusFactor = maxCentrality > 0 ? (maxAdditionalRadius / maxCentrality) : 0;
+
+      const linkPairs = {};
+      links.forEach(link => {
+        if(link.source && link.target) {
+            linkPairs[`${link.source.id},${link.target.id}`] = true;
+        }
+      });
+      links.forEach(link => {
+          if(link.source && link.target) {
+            if (linkPairs[`${link.target.id},${link.source.id}`]) {
+                link.isBidirectional = true;
+            } else {
+                link.isBidirectional = false;
+            }
+          }
+      });
+
+      const svg = d3.select("#canvas")
+        .attr("viewBox", [0, 0, width, height]);
+
+      svg.append("defs").append("marker")
+        .attr("id", "arrowhead")
+        .attr("markerWidth", 10).attr("markerHeight", 10)
+        .attr("refX", 9).attr("refY", 3)
+        .attr("orient", "auto")
+        .append("polygon")
+        .attr("points", "0 0, 10 3, 0 6")
+        .attr("fill", "#065F46");
+
+      const g = svg.append("g");
+
+      const simulation = d3.forceSimulation(nodes)
+        .force("link", d3.forceLink(links).id(d => d.id).distance(250).strength(0.6))
+        .force("charge", d3.forceManyBody().strength(-1500))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collision", d3.forceCollide().radius(d => d.radius + 15));
+
+      const linkPath = g.append("g")
+        .attr("class", "links")
+        .selectAll("path")
+        .data(links)
+        .join("path")
+        .attr("class", "link")
+        .attr("marker-end", "url(#arrowhead)");
+
+      const linkLabelGroup = g.append("g")
+        .attr("class", "link-label-groups")
+        .selectAll("g")
+        .data(links)
+        .join("g")
+        .attr("class", "link-label-group");
+
+      linkLabelGroup.append("rect")
+        .attr("width", 20).attr("height", 20)
+        .attr("rx", 4).attr("ry", 4)
+        .attr("x", -10).attr("y", -10);
+
+      linkLabelGroup.append("text")
+        .text(d => d.polarity);
+
+      const nodeGroup = g.append("g")
+        .attr("class", "nodes")
+        .selectAll("g")
+        .data(nodes)
+        .join("g")
+        .attr("class", "node")
+        // Afegim una classe especial al node 'acad'
+        .classed("fixed-size", d => d.id === 'acad')
+        .call(drag(simulation));
+
+      nodeGroup.append("circle")
+        .attr("r", d => d.radius);
+
+      nodeGroup.append("text")
+        .each(function(d) {
+          const lines = d.label.split('\n');
+          const lineHeight = 14;
+          const startY = -((lines.length - 1) * lineHeight) / 2;
+          for (let i = 0; i < lines.length; i++) {
+            d3.select(this).append("tspan")
+              .attr("x", 0)
+              .attr("y", startY + (i * lineHeight))
+              .text(lines[i]);
+          }
+        });
+
+      function getArcParams(d) {
+          if (!d.source || !d.target) {
+            return "M 0 0 Q 0 0 0 0";
+          }
+          const dx = d.target.x - d.source.x;
+          const dy = d.target.y - d.source.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist === 0) return "M 0 0 Q 0 0 0 0";
+          const sourceRadius = d.source.radius || baseRadius;
+          const targetRadius = d.target.radius || baseRadius;
+          const startX = d.source.x + (dx / dist) * sourceRadius;
+          const startY = d.source.y + (dy / dist) * sourceRadius;
+          const endX = d.target.x - (dx / dist) * targetRadius;
+          const endY = d.target.y - (dy / dist) * targetRadius;
+          const midX = (startX + endX) / 2;
+          const midY = (startY + endY) / 2;
+          let curveFactor = 0.25;
+          if (d.isBidirectional && d.source.id > d.target.id) {
+              curveFactor = -0.25;
+          }
+          const offsetX = -(endY - startY) * curveFactor;
+          const offsetY = (endX - startX) * curveFactor;
+          return { startX, startY, controlX: midX + offsetX, controlY: midY + offsetY, endX, endY };
+      }
+
+      simulation.on("tick", () => {
+        nodeGroup.attr("transform", d => `translate(${d.x}, ${d.y})`);
+        linkPath.attr("d", d => {
+            const p = getArcParams(d);
+            if (typeof p === "string") return p;
+            return `M ${p.startX} ${p.startY} Q ${p.controlX} ${p.controlY} ${p.endX} ${p.endY}`;
+        });
+        linkLabelGroup.attr("transform", d => {
+            const p = getArcParams(d);
+            if (typeof p === "string") return "translate(0,0)";
+            return `translate(${p.controlX}, ${p.controlY})`;
+        });
+      });
+
+      function drag(simulation) {
+        function dragstarted(event, d) {
+          if (!event.active) simulation.alphaTarget(0.3).restart();
+          d.fx = d.x; d.fy = d.y;
+        }
+        function dragged(event, d) {
+          d.fx = event.x; d.fy = event.y;
+        }
+        function dragended(event, d) {
+          if (!event.active) simulation.alphaTarget(0);
+           // Excepció: no desfixem el node 'acad' si és el que hem arrossegat
+           if (d.id !== 'acad') {
+                d.fx = null;
+                d.fy = null;
+           }
+        }
+        return d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended);
+      }
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.1, 4])
+        .on("zoom", (event) => {
+          g.attr("transform", event.transform);
+        });
+      svg.call(zoom);
+
+      // LÒGICA DE L'SLIDER (AMB EXCEPCIÓ PER 'acad')
+      d3.select("#sizeSlider").on("input", function() {
+          const scaleFactor = +this.value / 100;
+
+          nodes.forEach(node => {
+              if (node.id === 'acad') {
+                  node.radius = baseRadius;
+              } else {
+                  const bonus = (node.centrality * bonusFactor) * scaleFactor;
+                  node.radius = baseRadius + bonus;
+              }
+          });
+
+          nodeGroup.selectAll("circle")
+              .transition()
+              .duration(200)
+              .attr("r", d => d.radius);
+
+          simulation.force("collision").radius(d => (d.radius || baseRadius) + 15);
+          simulation.alpha(0.3).restart();
+      });
+
+    } // --- Fi de initializeDiagram ---
+
+
+    // === EXECUCIÓ AUTOMÀTICA ---
+    window.onload = () => {
+
+      // ===== DADES DEL DIAGRAMA (FINALS) =====
+      const data = {
+        "nodes": [
+          // Nodes centrals
+          { "id": "acad", "label": "Implementació\nAcadèmia" },
+          { "id": "econ", "label": "Dinamització\nEconòmica" },
+          { "id": "pop", "label": "Augment\nPoblació" },
+          { "id": "youth", "label": "Retenció\nJoventut/Població" },
+          { "id": "exod", "label": "Reducció\nÈxode Rural" },
+
+          // Nodes R1 (Jobs)
+          { "id": "jobs", "label": "Creació\nd'Ocupació" },
+          { "id": "income", "label": "Augment\nd'Impostos\nRecaptats" },
+
+          // Nodes R3 (Serveis)
+          { "id": "serv", "label": "Millora Serveis\n(Salut, Educació)" },
+
+          // Nodes R4 (Turisme)
+          { "id": "tour", "label": "Augment\nTurisme" },
+          { "id": "biz", "label": "Creixement\nNegocis Locals" },
+
+          // Nodes R5 (Eliminat)
+          { "id": "divers", "label": "Diversificació\nEconòmica" },
+
+          // Nodes R6 (Eliminat)
+          { "id": "birth", "label": "Augment\nNatalitat" },
+          { "id": "aging", "label": "Reducció\nEnvelliment" },
+
+          // Nodes R7 (Formació)
+          { "id": "form", "label": "Formació\nIntegral" },
+          { "id": "cult", "label": "Integració\nCultural/Social" },
+          { "id": "social", "label": "Dinamització\nSocial" },
+
+          // Nodes R8 (Eliminat)
+
+          // Nodes R10 (Oportunitats)
+          { "id": "no_jobs", "label": "Disminució Falta\nd'Oportunitats\nLaborals" },
+
+          // Nodes R12 (Eliminat)
+          // Node 'no_edu' eliminat
+
+          // Nodes R15 (Territori)
+          { "id": "territory", "label": "Disminució del\nDesequilibri\nTerritorial" }
+
+          // Node 'housing' eliminat
+        ],
+        "links": [
+          // --- ENLLAÇOS D'INICI (INPUT) ---
+          { "from": "acad", "to": "jobs", "effect": "increase" },
+          { "from": "acad", "to": "pop", "effect": "increase" },
+          { "from": "acad", "to": "tour", "effect": "increase" },
+          { "from": "acad", "to": "form", "effect": "increase" },
+          { "from": "acad", "to": "divers", "effect": "increase" },
+          { "from": "acad", "to": "econ", "effect": "increase" }, // R15
+
+          // --- NOUS ENLLAÇOS PER ALS NOUS BUCLES ---
+          { "from": "pop", "to": "income", "effect": "increase" },
+          { "from": "income", "to": "serv", "effect": "increase" },
+
+          // --- BUCLES (R) ---
+          // R1 (Eliminat)
+          { "from": "income", "to": "econ", "effect": "increase" },
+          { "from": "econ", "to": "jobs", "effect": "increase" },
+          // R2 (Eliminat)
+          { "from": "pop", "to": "youth", "effect": "increase" },
+          { "from": "youth", "to": "exod", "effect": "increase" },
+          // { "from": "exod", "to": "pop", "effect": "increase" }, // Eliminat amb R2
+          // R3
+          { "from": "econ", "to": "serv", "effect": "increase" },
+          { "from": "serv", "to": "youth", "effect": "increase" },
+          { "from": "youth", "to": "econ", "effect": "increase" },
+          // R4
+          { "from": "tour", "to": "biz", "effect": "increase" },
+          { "from": "biz", "to": "econ", "effect": "increase" },
+          { "from": "econ", "to": "tour", "effect": "increase" },
+          // R5 (Eliminat) - Mantenim enllaç si és vàlid
+          { "from": "divers", "to": "econ", "effect": "increase" },
+          // R6 (Eliminat)
+          { "from": "birth", "to": "aging", "effect": "increase" },
+          { "from": "aging", "to": "youth", "effect": "increase" },
+          { "from": "youth", "to": "pop", "effect": "increase" },
+          { "from": "youth", "to": "birth", "effect": "increase" },
+          { "from": "aging", "to": "social", "effect": "increase" },
+          { "from": "social", "to": "divers", "effect": "increase" },
+          { "from": "divers", "to": "exod", "effect": "increase" },
+          // R7
+          { "from": "form", "to": "cult", "effect": "increase" },
+          { "from": "cult", "to": "social", "effect": "increase" },
+          { "from": "social", "to": "form", "effect": "increase" },
+          // R8 (Eliminat)
+          { "from": "youth", "to": "serv", "effect": "increase" }, // Es manté per R3
+          // R9 (Eliminat)
+          { "from": "exod", "to": "divers", "effect": "increase" },
+          // R10
+          { "from": "jobs", "to": "no_jobs", "effect": "increase" },
+          { "from": "no_jobs", "to": "exod", "effect": "increase" },
+          // R11 (Eliminat)
+
+          // R12 (Eliminat)
+
+          // R13 (Modificat per la nova definició)
+          { "from": "social", "to": "econ", "effect": "increase" },
+          { "from": "econ", "to": "exod", "effect": "increase" },
+
+          // R14 (Eliminat)
+
+          // R15
+          { "from": "econ", "to": "territory", "effect": "increase" },
+          { "from": "territory", "to": "exod", "effect": "increase" },
+
+          // --- BUCLES (B) ---
+          // B1 (Eliminat)
+        ]
+      };
+
+      // ===== LLISTA MANUAL DELS 8 BUCLES RESTANTS =====
+  const hardcodedLoops = [
+        // Bucles R
+        // R1 eliminat
+        // R2 eliminat
+        // R3 eliminat
+  { label: 'R1', path: ['tour', 'biz', 'econ'], polarities: ['+', '+', '+'], type: 'positive' },
+        // R5 eliminat
+        // R6 eliminat
+  { label: 'R2', path: ['form', 'cult', 'social'], polarities: ['+', '+', '+'], type: 'positive' },
+        // R8 eliminat
+        // R9 eliminat
+  { label: 'R3', path: ['jobs', 'no_jobs', 'exod', 'pop', 'youth', 'econ'], polarities: ['+', '+', '+', '+', '+', '+'], type: 'positive' }, // Modificat per la pèrdua de R1
+        // R11 eliminat
+        // R12 eliminat
+  { label: 'R4', path: ['pop', 'youth', 'birth', 'aging', 'social', 'econ', 'exod'], polarities: ['+', '+', '+', '+', '+', '+', '+'], type: 'positive' },
+        // R14 eliminat
+  { label: 'R5', path: ['econ', 'territory', 'exod', 'pop', 'youth'], polarities: ['+', '+', '+', '+', '+'], type: 'positive' },
+        // R18 eliminat
+        // R19 eliminat
+        // Nou bucle: Augment d'impostos recaptats → Millora de serveis → Retenció de joves → Augment de població → (tanca el cicle)
+  { label: 'R6', path: ['income', 'serv', 'youth', 'pop'], polarities: ['+', '+', '+', '+'], type: 'positive' }
+
+        // Bucles B eliminats
+      ];
+
+       // FILTRAT FINAL DE BUCLES DUPLICATS (si n'hi hagués)
+       const uniqueLoopPaths = new Set();
+       const finalLoops = hardcodedLoops.filter(loop => {
+           const sortedPath = [...loop.path].sort().join(',');
+           if (uniqueLoopPaths.has(sortedPath)) {
+               return false;
+           }
+           uniqueLoopPaths.add(sortedPath);
+           return true;
+       });
+
+
+      // ===============================================
+
+
+      // Auto-formateig de les etiquetes llargues (es manté)
+      data.nodes.forEach(node => {
+          let charLimit = (['territory', 'no_jobs', 'income'].includes(node.id)) ? 18 : 12; // Límit més llarg per als nous noms
+          if (node.label.length > 20 && !node.label.includes('\n')) {
+            const words = node.label.split(' ');
+            let newLine = ''; let lineCount = 0; const newLabel = [];
+            words.forEach(word => {
+                if (newLine.length + word.length > charLimit && lineCount < 2) {
+                  newLabel.push(newLine.trim());
+                  newLine = word + ' '; lineCount++;
+                } else {
+                  newLine += word + ' ';
+                }
+            });
+            newLabel.push(newLine.trim());
+            node.label = newLabel.join('\n');
+          }
+      });
+
+      // Crida a displayLoops amb la llista final de bucles
+      try {
+        displayLoops(finalLoops, data);
+        // Actualitza el títol de la llista de bucles
+        document.querySelector('#loopsInfo h3').textContent = `🔁 Bucles de Retroalimentació (${finalLoops.length} Bucles):`;
+      } catch (e) {
+          console.error("Error en mostrar bucles:", e);
+          alert("S'ha produït un error en mostrar els bucles. Revisa la consola (F12).");
+      }
+
+      // Dibuixar el diagrama
+      try {
+        initializeDiagram(data);
+      } catch (e) {
+          console.error("Error en dibuixar el diagrama:", e);
+          alert("S'ha produït un error en dibuixar el diagrama. Revisa la consola (F12).");
+      }
+    };
+  </script>
+</body>
+</html>
