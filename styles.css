@@ -31,6 +31,9 @@ nav{margin-left:auto;display:flex;gap:8px;align-items:center}
 .navlink.active{background:var(--green-500);color:white;box-shadow:0 6px 16px rgba(31,166,90,0.15)}
 .cta{background:linear-gradient(90deg,var(--green-700),var(--green-500));color:white;padding:10px 14px;border-radius:12px;font-weight:700;box-shadow:0 10px 30px rgba(31,166,90,0.12)}
 
+/* Mobile menu toggle (hidden on desktop) */
+.menu-toggle{display:none;margin-left:auto;background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));border:1px solid rgba(255,255,255,0.6);box-shadow:0 6px 16px rgba(3,41,18,0.08);border-radius:10px;padding:8px 12px;font-weight:900;cursor:pointer}
+
 /* container */
 .container{max-width:1100px;margin:22px auto;padding:24px}
 
@@ -65,7 +68,7 @@ nav{margin-left:auto;display:flex;gap:8px;align-items:center}
 section{margin-top:22px;padding:18px;background:var(--card);border-radius:14px;box-shadow:0 8px 26px rgba(3,41,18,0.04)}
 h2{margin-top:0}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.card{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(247,255,247,0.7));border:1px solid rgba(255,255,255,0.5);box-shadow:0 8px 26px rgba(3,41,18,0.04)}
+.card{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(247,255,247,0.7));border:1px solid rgba(255,255,255,0.5);box-shadow:0 8px 26px rgba(3,41,18,0.04);overflow-wrap:anywhere;word-break:break-word}
 
 /* Clickable blog card visual treatments */
 .card.clickable{position:relative;overflow:hidden;cursor:pointer}
@@ -121,7 +124,18 @@ h2{margin-top:0}
 
 @media (max-width:520px){
   .value-box{font-size:13px;padding:8px 10px;min-width:44px}
-  .timeline-value{position:static;transform:none;margin-top:8px}
+  /* Ocultar valores posicionados para evitar solapes en móvil */
+  .timeline-values{display:none}
+}
+
+/* Responsive improvements for the 5-year plan slider */
+@media (max-width:620px){
+  .timeline-bar{height:18px}
+  .timeline-handle{width:26px;height:26px;border-width:3px}
+  .timeline-markers{font-size:12px}
+}
+@media (max-width:420px){
+  .timeline-markers{display:none}
 }
 
 /* visual label for the timeline (more prominent) */
@@ -137,6 +151,14 @@ h2{margin-top:0}
 
 @media (max-width:520px){
   #timeline-label-5y{font-size:14px}
+}
+
+/* Chips móviles para seleccionar año (debajo del slider) */
+.timeline-chips{display:none;margin-top:8px;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scroll-snap-type:x mandatory}
+.timeline-chip{flex:0 0 auto;scroll-snap-align:start;border:1px solid rgba(11,42,18,0.08);border-radius:999px;padding:8px 12px;background:#fff;font-weight:800;color:var(--green-700);cursor:pointer;box-shadow:0 6px 16px rgba(3,41,18,0.04)}
+.timeline-chip[aria-pressed="true"], .timeline-chip.active{background:linear-gradient(180deg,var(--green-700),var(--green-500));color:#fff;border-color:transparent;box-shadow:0 10px 26px rgba(31,166,90,0.16)}
+@media (max-width:520px){
+  .timeline-chips{display:flex}
 }
 
 /* Modelo formativo: pilares visuales */
@@ -317,7 +339,7 @@ footer{margin-top:20px;padding:18px;border-radius:12px;background:linear-gradien
 .rounded{border-radius:12px}
 /* language dropdown */
 .lang-dropdown{position:relative;display:inline-block}
-.lang-toggle{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.6);background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.85));cursor:pointer;font-weight:700;min-width:140px;justify-content:flex-start}
+.lang-toggle{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.6);background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.85));cursor:pointer;font-weight:700;min-width:unset;justify-content:flex-start}
 .lang-toggle .flag{font-size:16px;flex:0 0 24px}
 #lang-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lang-menu{position:absolute;right:0;top:calc(100% + 8px);background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(247,255,247,0.96));border:1px solid rgba(255,255,255,0.6);border-radius:10px;box-shadow:0 10px 30px rgba(3,41,18,0.08);list-style:none;padding:6px;margin:0;min-width:160px;display:none}
@@ -325,3 +347,91 @@ footer{margin-top:20px;padding:18px;border-radius:12px;background:linear-gradien
 .lang-menu li{padding:8px 10px;border-radius:8px;cursor:pointer;display:flex;gap:8px;align-items:center}
 .lang-menu li:hover{background:linear-gradient(90deg,#f7fff7,#fff)}
 .lang-menu li.active{background:var(--green-500);color:white}
+
+/* Visually hide but keep accessible (screen-reader only) */
+.sr-only{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0,0,0,0) !important;white-space:nowrap !important;border:0 !important}
+
+/* --- Extra mejoras responsive móviles y tablets --- */
+@media (max-width: 900px){
+  .container{padding:20px}
+  .hero-text h1{font-size:30px}
+}
+
+@media (max-width: 768px){
+  /* Header ocupa todo el ancho y deja de ser redondeado para ganar espacio */
+  header{top:env(safe-area-inset-top);margin:0;border-radius:0;padding:10px 12px}
+  .logo img{width:44px;height:44px}
+  .logo .mark{display:none}
+  /* Mostrar botón hamburguesa */
+  .menu-toggle{display:inline-flex}
+  /* Dropdown del menú: ocupa ancho completo bajo el header */
+  #main-nav{position:absolute;left:0;right:0;top:100%;
+    background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,255,247,0.96));
+    border:1px solid rgba(255,255,255,0.6);
+    box-shadow:0 16px 40px rgba(3,41,18,0.12);
+    border-radius:0 0 14px 14px;
+    margin-left:0;
+    flex-direction:column;align-items:stretch;gap:6px;
+    padding:10px;
+    max-height:0;overflow:hidden;transition:max-height 260ms ease;z-index:100;
+  }
+  #main-nav.open{max-height:80vh}
+  #main-nav .navlink, #main-nav .cta{display:block;width:100%;padding:10px 12px;font-size:15px}
+  #main-nav .cta{text-align:center}
+  /* fallback horizontal scroll (si se fuerza a inline) */
+  nav[role="navigation"].inline{overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;gap:6px;max-width:100%}
+  nav[role="navigation"].inline::-webkit-scrollbar{display:none}
+  .buttons{flex-wrap:wrap}
+}
+
+/* Idiomas: en móvil, integrar icono 🌐 dentro del botón y ocultar etiqueta suelta */
+@media (max-width:768px){
+  /* No icon on mobile; keep button text-only */
+  .lang-toggle::before{content:none}
+}
+
+/* Selector de idioma responsive en móvil */
+@media (max-width:768px){
+  .lang-dropdown{width:100%}
+  .lang-toggle{width:100%; justify-content:flex-start}
+  .lang-menu{position:static; right:auto; top:auto; min-width:unset; width:100%}
+  .lang-menu li{padding:12px 10px}
+}
+
+@media (max-width: 620px){
+  /* Fichas de pilares pueden partir en 2 columnas */
+  .pillars{flex-wrap:wrap}
+  .pillar{flex:1 1 calc(50% - 6px)}
+}
+
+@media (max-width: 420px){
+  /* En teléfonos muy pequeños, pilares a una columna */
+  .pillar{flex:1 1 100%}
+}
+
+/* Galería responsive: 3 -> 2 -> 1 columnas */
+@media (max-width: 740px){
+  .gallery{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width: 420px){
+  .gallery{grid-template-columns:1fr}
+}
+
+/* Ajustes tipográficos y de botones en móvil pequeño */
+@media (max-width:520px){
+  .hero-text h1{font-size:26px}
+  .navlink{font-size:13px}
+}
+
+/* Map iframe altura menor en móvil (sin tocar contenido) */
+@media (max-width:600px){
+  iframe[src*="google.com/maps"]{height:min(320px,46vh)!important}
+}
+
+/* Imagen principal de planos: altura adaptativa en móviles */
+@media (max-width:920px){
+  #plan-main-img{height:320px!important}
+}
+@media (max-width:540px){
+  #plan-main-img{height:auto!important;max-height:60vh}
+}

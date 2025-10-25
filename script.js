@@ -36,6 +36,54 @@ function navigateTo(page){
   showPage(page);
 }
 
+// --- Mobile menu toggle (hamburger) ---
+(function(){
+  const toggleBtn = document.getElementById('menu-toggle');
+  const nav = document.getElementById('main-nav');
+  const headerEl = document.querySelector('header');
+  if(!toggleBtn || !nav) return;
+
+  const closeMenu = ()=>{
+    nav.classList.remove('open');
+    toggleBtn.setAttribute('aria-expanded','false');
+  };
+  const openMenu = ()=>{
+    nav.classList.add('open');
+    toggleBtn.setAttribute('aria-expanded','true');
+  };
+  const toggleMenu = ()=>{
+    const isOpen = nav.classList.contains('open');
+    if(isOpen) closeMenu(); else openMenu();
+  };
+
+  toggleBtn.addEventListener('click', e=>{
+    e.preventDefault();
+    toggleMenu();
+  });
+
+  // Cerrar al hacer clic en cualquier enlace del menú
+  nav.addEventListener('click', e=>{
+    const a = e.target.closest('a');
+    if(a){ closeMenu(); }
+  });
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'Escape') closeMenu();
+  });
+
+  // Cerrar al cambiar a escritorio
+  window.addEventListener('resize', ()=>{
+    if(window.innerWidth > 768) closeMenu();
+  });
+
+  // Cerrar si se hace clic fuera del header/nav
+  document.addEventListener('click', e=>{
+    if(!headerEl) return;
+    if(!headerEl.contains(e.target)) closeMenu();
+  });
+})();
+
 // --- i18n helpers ---------------------------------------------------------
 const DEFAULT_LANG = 'es';
 let currentLang = DEFAULT_LANG;
@@ -550,7 +598,11 @@ const langMeta = {
 function updateLangUI(lang){
   const meta = langMeta[lang] || langMeta['es'];
   if(langLabel) langLabel.textContent = meta.label;
-  if(langToggle) langToggle.querySelector('.flag').textContent = meta.flag;
+  if(langToggle){
+    // Provide tooltip and accessible label; button shows only text
+    langToggle.setAttribute('title', meta.label);
+    langToggle.setAttribute('aria-label', meta.label);
+  }
   // mark active in menu
   if(langMenu){
     Array.from(langMenu.children).forEach(li=>{
@@ -707,7 +759,31 @@ if(langToggle && langMenu){
     if(!bar || !progress || !handle || !label) return;
 
     const YEARS = 5;
-  const endpointValues = {1:54, 2:72, 3:90, 4:126, 5:144};
+    const endpointValues = {1:54, 2:72, 3:90, 4:126, 5:144};
+
+    // Create mobile chips under the slider (without removing the slider)
+    let chips = [];
+    (function createChips(){
+      const wrapper = document.querySelector('#price-timeline-5y .timeline-wrapper');
+      if(!wrapper) return;
+      if(document.getElementById('timeline-chips-5y')) return; // already created
+      const chipsWrap = document.createElement('div');
+      chipsWrap.id = 'timeline-chips-5y';
+      chipsWrap.className = 'timeline-chips';
+      for(let y=1; y<=YEARS; y++){
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'timeline-chip';
+        btn.dataset.year = String(y);
+        btn.setAttribute('aria-pressed','false');
+        // Show just the year number; label below already shows players
+        btn.textContent = String(y);
+        btn.addEventListener('click', ()=> setYear(y));
+        chipsWrap.appendChild(btn);
+        chips.push(btn);
+      }
+      wrapper.insertAdjacentElement('afterend', chipsWrap);
+    })();
 
     // helper: set position based on year (1..5)
     function setYear(year, opts){
@@ -727,6 +803,14 @@ if(langToggle && langMenu){
       label.textContent = translate('programas.plan.label', replacements);
       // highlight the corresponding value box
       document.querySelectorAll('.timeline-value').forEach(n=> n.classList.toggle('active', Number(n.dataset.year) === Number(year)));
+      // update chips active state
+      if(chips && chips.length){
+        chips.forEach((c,i)=>{
+          const active = (i+1) === year;
+          c.classList.toggle('active', active);
+          c.setAttribute('aria-pressed', active? 'true':'false');
+        });
+      }
       // green when at endpoints (1 or 5)
       if(year === 1 || year === YEARS){ bar.classList.add('green'); } else { bar.classList.remove('green'); }
       if(!opts || !opts.silent){
@@ -813,7 +897,7 @@ if(langToggle && langMenu){
     // make handle focusable and forward key events to bar
     handle.addEventListener('keydown', e=>{ bar.dispatchEvent(new KeyboardEvent('keydown', e)); });
 
-    // ensure handle positions after resize
+    // ensure handle positions after resize, keep active chip
     window.addEventListener('resize', ()=>{ const cur = Number(bar.getAttribute('aria-valuenow')||'1'); setYear(cur,{silent:true}); });
 
   })();

@@ -17,6 +17,7 @@
   <div class="muted" style="font-size:12px" data-i18n="site.tagline">Forjando el futuro del fútbol en el corazón de los Pirineos</div>
       </div>
     </div>
+    <button id="menu-toggle" class="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Abrir menú" title="Menú">☰</button>
     <nav id="main-nav">
       <a class="navlink" href="#home" data-target="home" data-i18n="nav.home">Inicio</a>
       <a class="navlink" href="#la-academia" data-target="la-academia" data-i18n="nav.la_academia">La Academia</a>
@@ -29,17 +30,15 @@
       <a class="navlink" href="#blog" data-target="blog" data-i18n="nav.blog">Blog</a>
       <a class="cta navlink" href="#admisiones" data-target="admisiones" data-i18n="nav.apply">Aplica ahora</a>
 
-      <label for="lang-select" style="margin-left:8px;font-weight:600;display:inline-block">🌐</label>
       <div class="lang-dropdown" id="lang-dropdown" style="margin-left:6px">
-        <button class="lang-toggle" id="lang-toggle" aria-haspopup="true" aria-expanded="false">
-          <span class="flag">🇪🇸</span>
+        <button class="lang-toggle" id="lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Cambiar idioma">
           <span id="lang-label" style="font-weight:600">Español</span>
         </button>
         <ul class="lang-menu" role="menu" id="lang-menu">
-          <li role="menuitem" data-lang="es"><span class="flag">🇪🇸</span> Español</li>
-          <li role="menuitem" data-lang="ca"><span class="flag">🇦🇩</span> Català</li>
-          <li role="menuitem" data-lang="fr"><span class="flag">🇫🇷</span> Français</li>
-          <li role="menuitem" data-lang="en"><span class="flag">🇬🇧</span> English</li>
+          <li role="menuitem" data-lang="es" aria-label="Español">Español</li>
+          <li role="menuitem" data-lang="ca" aria-label="Català">Català</li>
+          <li role="menuitem" data-lang="fr" aria-label="Français">Français</li>
+          <li role="menuitem" data-lang="en" aria-label="English">English</li>
         </ul>
       </div>
     </nav>
